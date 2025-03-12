@@ -10,10 +10,9 @@ def calculate_splits(expenses):
 
 def update_paid_status(name, balance, creditors, debtors):
     if name in balance:
-        paid_amount = balance[name]  # Get the amount that was owed
-        balance[name] = 0  # Mark as fully paid
+        paid_amount = balance[name]
+        balance[name] = 0
         
-        # Adjust creditors' balances
         creditors_to_update = creditors[creditors > 0]
         total_credit = creditors_to_update.sum()
         
@@ -78,7 +77,6 @@ if st.button("Split", key="split_button", help="Calculate who owes what"):
     st.write("Positive means they should receive money, negative means they owe.")
     st.dataframe(balance.to_frame(name="Balance"))
     
-    # Suggested Payments
     transactions = []
     
     for debtor, debt_amount in debtors.items():
